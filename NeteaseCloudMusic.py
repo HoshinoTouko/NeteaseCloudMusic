@@ -6,7 +6,7 @@ Created on 2013-06-07 19:28
 @author: Yang Junyong <yanunon@gmail.com>
 '''
 
-import md5
+import hashlib
 import base64
 import urllib2
 import urllib
@@ -27,7 +27,7 @@ def encrypted_id(id):
     byte1_len = len(byte1)
     for i in xrange(len(byte2)):
         byte2[i] = byte2[i]^byte1[i%byte1_len]
-    m = md5.new()
+    m = hashlib.md5()
     m.update(byte2)
     result = m.digest().encode('base64')[:-1]
     result = result.replace('/', '_')
